@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGPayApp.CustomControls.CustomIconText"
+             x:Name="CustomIconTextView">
+    <VerticalStackLayout Margin="0" Padding="0" Spacing="10">
+        <Border  StrokeShape="RoundRectangle 10"
+                 HeightRequest="60"
+                 WidthRequest="60"
+                 StrokeThickness="0"
+                 BackgroundColor="#84aef5">
+            <Label FontSize="30" TextColor="{Binding IconColor, Source={x:Reference CustomIconTextView}}"  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Icon,Source={x:Reference CustomIconTextView}}" FontFamily="MaterialRounded"/>
+        </Border>
+        <Label TextColor="{Binding IconTextColor, Source={x:Reference CustomIconTextView}}"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center" LineBreakMode="WordWrap" MaxLines="2" Text="{Binding IconText, Source={x:Reference CustomIconTextView}}" FontSize="14" FontAttributes="Bold"/>
+        
+        <VerticalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding SelectIconCommand, Source={x:Reference CustomIconTextView}}"></TapGestureRecognizer>
+            
+        </VerticalStackLayout.GestureRecognizers>
+    </VerticalStackLayout>
+</ContentView>
