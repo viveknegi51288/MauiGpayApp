@@ -1,0 +1,138 @@
+<baseContentPage:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    ios:Page.UseSafeArea="False"
+    xmlns:baseContentPage="clr-namespace:MauiGPayApp.Views"
+    x:Class="MauiGPayApp.Views.HomeView"
+    Shell.BackgroundColor="#448AFF"
+    xmlns:iconConstants="clr-namespace:MauiGPayApp.Constants"
+    xmlns:customControls="clr-namespace:MauiGPayApp.CustomControls"
+    Shell.NavBarIsVisible="False"
+    >
+    
+    <Grid RowDefinitions="100,*,3*"
+          IgnoreSafeArea="True"
+          BackgroundColor="#448AFF"
+          VerticalOptions="FillAndExpand">
+        
+        <Grid ColumnDefinitions="*,30"
+              Padding="10"
+              BackgroundColor="#448AFF"
+              Grid.Row="0"
+        >
+           
+            <!-- <SearchBar BackgroundColor="Transparent" -->
+            <!--            Placeholder = "Pay by name or Phone number" Margin="0,0,20,0" /> -->
+            <Border
+                Grid.Row="0"
+                BackgroundColor="White"
+                StrokeShape="RoundRectangle 20"
+                HeightRequest="50"
+                Margin="0,0,20,0"
+                VerticalOptions="FillAndExpand"
+                Padding="20,10">
+            
+            <Grid ColumnDefinitions="Auto,*"  Padding="4" BackgroundColor="Transparent" HorizontalOptions="Fill">
+                <Label Grid.Column="0" FontFamily="MaterialRounded" VerticalOptions="Center" FontSize="16" TextColor="{StaticResource SearchIconColor}" Text="{x:Static iconConstants:IconConstants.SearchIcon}"/>
+                
+                <Entry Grid.Column="1" x:Name="searchEntry" BackgroundColor="GreenYellow"
+                       HorizontalOptions="Fill"
+                       Placeholder="Pay by name or Phone number" Margin="10,0"/>
+            </Grid>
+                </Border>
+            <toolkit:AvatarView BorderColor="White" BorderWidth="2"
+                                VerticalOptions="Center"
+                                Margin="0,0,10,0" Grid.Column="1" HeightRequest="40" WidthRequest="40" ImageSource="vivek.jpg" Text="IS" />
+        </Grid>
+        <Grid
+            Padding="16,20"
+            Grid.Row="1"
+            
+            BackgroundColor="#448AFF"
+            VerticalOptions="End" 
+            ColumnDefinitions="*,*,*,*"
+            >
+        
+        <customControls:CustomIconText Grid.Column="0" IconText="Scan any QR code" IconColor="{StaticResource IconColor}"
+                                       Icon="{x:Static iconConstants:IconConstants.ScanIcon}"
+                                       SelectIconCommand= "{Binding SelectQRScanCommand}"
+                                       IconTextColor="White"/>
+        
+        <customControls:CustomIconText Grid.Column="1" IconText="Pay&#10;anyone" IconColor="{StaticResource IconColor}"
+                                       Icon="{x:Static iconConstants:IconConstants.PaymentIcon}"
+                                       SelectIconCommand= "{Binding SelectPayAnyoneCommand}"
+                                       IconTextColor="White"/>
+        
+        <customControls:CustomIconText  Grid.Column="2" IconText="Bank Transfer" IconColor="{StaticResource IconColor}"
+                                        Icon="{x:Static iconConstants:IconConstants.BankIcon}"
+                                        SelectIconCommand= "{Binding SelectBankTransferCommand}"
+                                        IconTextColor="White"/>
+        
+        <customControls:CustomIconText Grid.Column="3"  IconText="Mobile Recharge" IconColor="{StaticResource IconColor}"
+                                       Icon="{x:Static iconConstants:IconConstants.MobileRechargeIcon}"
+                                       SelectIconCommand= "{Binding SelectMobileRechargeCommand}"
+                                       IconTextColor="White"/>
+        
+        </Grid>
+        
+       
+        
+        <Border
+            Grid.Row="2"
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 20 20 0 0"
+            VerticalOptions="FillAndExpand"
+            Padding="20,10">
+            <Grid RowDefinitions="120,*">
+                
+            <CollectionView
+                Grid.Row="0"
+                CanReorderItems="True"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding OtherOptionList}"
+            >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal">
+                    </LinearItemsLayout>
+                
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10,0" StrokeShape="RoundRectangle 20"
+                                 HeightRequest="60"
+                                 WidthRequest="140"
+                                 Stroke="#84aef5"
+                                 StrokeThickness="1"
+                                 BackgroundColor="White">
+                            <HorizontalStackLayout Spacing="4" VerticalOptions="Center">
+                            <toolkit:AvatarView BorderColor="#84aef5" BorderWidth="2"
+                                                VerticalOptions="Center"
+                                                TextColor="{Binding IconColor}"
+                                                HorizontalOptions="Center"
+                                                BackgroundColor="#84aef5"
+                                                
+                                                FontFamily="MaterialRounded"
+                                                Text="{Binding Icon}"
+                                                Margin="10,10,0,10" HeightRequest="30" 
+                                                WidthRequest="30" />
+                            <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="{Binding IconTitle}" FontSize="12" VerticalOptions="Center" TextColor="Black"/>
+                            <Label Text="{Binding IconSubTitle}" FontFamily="OpenSansSemibold" FontSize="12" FontAttributes="Bold" VerticalOptions="Center"  TextColor="{Binding IconSubTitleTextColor}"/>
+                            </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            
+            
+            </CollectionView>
+                
+              
+                
+            </Grid>
+        </Border>
+
+    </Grid>
+</baseContentPage:BaseContentPage>
