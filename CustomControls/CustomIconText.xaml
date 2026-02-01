@@ -9,12 +9,12 @@
                  HeightRequest="60"
                  WidthRequest="60"
                  StrokeThickness="0"
-                 BackgroundColor="#84aef5">
+                 BackgroundColor="#aec9f7">
             <Label FontSize="30" TextColor="{Binding IconColor, Source={x:Reference CustomIconTextView}}"  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Icon,Source={x:Reference CustomIconTextView}}" FontFamily="MaterialRounded"/>
         </Border>
         <Label TextColor="{Binding IconTextColor, Source={x:Reference CustomIconTextView}}"
                HorizontalTextAlignment="Center"
-               HorizontalOptions="Center" LineBreakMode="WordWrap" MaxLines="2" Text="{Binding IconText, Source={x:Reference CustomIconTextView}}" FontSize="14" FontAttributes="Bold"/>
+               HorizontalOptions="Center" LineBreakMode="WordWrap" MaxLines="2" Text="{Binding IconText, Source={x:Reference CustomIconTextView}}" FontSize="16" FontAttributes="Bold"/>
         
         <VerticalStackLayout.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding SelectIconCommand, Source={x:Reference CustomIconTextView}}"></TapGestureRecognizer>

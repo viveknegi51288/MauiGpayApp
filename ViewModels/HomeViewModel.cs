@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using AuthenticationServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MauiGPayApp.Constants;
+using MauiGPayApp.Models;
 
 namespace MauiGPayApp.ViewModels;
 
@@ -24,16 +25,30 @@ public partial class HomeViewModel : BaseViewModel
             new() { Icon = IconConstants.UPIIDIcon , IconTitle = "UPI ID", IconSubTitle ="vivek@bankname" },
            
         };
+        PeopleList = new ObservableCollection<People>()
+        {
+            new (){FullName = "Vivek"},
+            new(){ FullName = "Rahul" },
+            new(){ FullName = "Amit" },
+            new(){ FullName = "Neha" },
+            new(){ FullName = "Priya" },
+            new(){ FullName = "Rohit" },
+            new(){ FullName = "Ankit" },
+            new(){ FullName = "Kunal" },
+            new(){ FullName = "Sandeep" },
+            new(){ FullName = "Pooja" },
+            new(){ FullName = "Deepak" },
+            new(){ FullName = "Arjun" },
+            new(){ FullName = "Riya" },
+        };
         return Task.CompletedTask;
     }
 
     [ObservableProperty] 
     private ObservableCollection<OtherOption> _otherOptionList;
-    
-    
-    
-    
-    
+
+    [ObservableProperty] 
+    private ObservableCollection<People> _peopleList;
 }
 
 public partial class OtherOption : ObservableObject
