@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using AuthenticationServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MauiGPayApp.Constants;
@@ -41,6 +42,14 @@ public partial class HomeViewModel : BaseViewModel
             new(){ FullName = "Arjun" },
             new(){ FullName = "Riya" },
         };
+
+        BillsAndRechargeList = new ObservableCollection<People>()
+        {
+            new() { FullName = "Mobile\nRecharge", IconImage = "mobile_recharge"},
+            new() { FullName = "Credit\nCard", IconImage = "credit_card"},
+            new() { FullName = "Postpaid\nmobile" , IconImage = "postpaid"},
+            new() { FullName = "DTH /\nCable TV" , IconImage = "dth"},
+        };
         return Task.CompletedTask;
     }
 
@@ -49,6 +58,9 @@ public partial class HomeViewModel : BaseViewModel
 
     [ObservableProperty] 
     private ObservableCollection<People> _peopleList;
+    
+    [ObservableProperty] 
+    private ObservableCollection<People> _billsAndRechargeList;
 }
 
 public partial class OtherOption : ObservableObject
@@ -66,5 +78,6 @@ public partial class OtherOption : ObservableObject
     [ObservableProperty]
     private Color _iconSubTitleTextColor = Colors.Black;
 
-    [ObservableProperty] private Color _iconColor = Colors.White;
+    [ObservableProperty] 
+    private Color _iconColor = Colors.White;
 }

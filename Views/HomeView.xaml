@@ -9,6 +9,7 @@
     Shell.BackgroundColor="White"
     xmlns:iconConstants="clr-namespace:MauiGPayApp.Constants"
     xmlns:customControls="clr-namespace:MauiGPayApp.CustomControls"
+    xmlns:viewModels="clr-namespace:MauiGPayApp.ViewModels"
     Shell.NavBarIsVisible="False"
     >
     <Grid RowDefinitions="100,*"
@@ -73,26 +74,27 @@
                                        IconTextColor="Black"/>
         
         </Grid>
+                
+                <!-- <Border Height="1" BackgroundColor="{StaticResource IconColor}" Margin="0,20"/> -->
             <Grid RowDefinitions="120,*" BackgroundColor="White">
             <CollectionView
                 Grid.Row="0"
-                CanReorderItems="True"
+                Margin="0,26,0,0"
                 ItemSizingStrategy="MeasureAllItems"
                 HorizontalScrollBarVisibility="Never"
-                ItemsSource="{Binding OtherOptionList}"
-                
-            >
+                ItemsSource="{Binding OtherOptionList}">
+               
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal">
                     </LinearItemsLayout>
-                
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="Auto" Padding="8,0">
-                        <Border Margin="10,0" StrokeShape="RoundRectangle 24"
+                        <Border Margin="4,0" StrokeShape="RoundRectangle 24"
                                 HeightRequest="60"
                                 Grid.Row="0"
+                                x:Name="ItemRoot"
                                 Stroke="{StaticResource SearchIconColor}"
                                 StrokeThickness="1"
                                 BackgroundColor="White">
@@ -117,25 +119,99 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
                 <VerticalStackLayout Grid.Row="1">
-                <Label Text="People" FontSize="24" FontAttributes="Bold" Margin="16,10"/>
-                <FlexLayout JustifyContent="SpaceBetween" Wrap="Wrap" BindableLayout.ItemsSource="{Binding PeopleList}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout Padding="8,8">
-                            <toolkit:AvatarView Text="{Binding Initials}"
-                                                CornerRadius="40"
-                                                FontSize="24"
-                                                HeightRequest="80"
-                                                WidthRequest="80"
-                                                StrokeThickness="2"
-                                                TextColor="White"
-                                                BackgroundColor="{Binding BackGroundColor}"
-                                                BorderColor="{StaticResource SearchIconColor}"/> 
-                            <Label Text="{Binding FullName}" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </FlexLayout>
+                    <Border Margin="10,0,10,10" StrokeShape="RoundRectangle 24"
+                            Stroke="{StaticResource SearchIconColor}"
+                            StrokeThickness="0"
+                            BackgroundColor="White">
+                        <FlexLayout JustifyContent="SpaceBetween" Wrap="Wrap" BindableLayout.ItemsSource="{Binding BillsAndRechargeList}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                
+                                    <VerticalStackLayout Padding="8,8">
+                                        <toolkit:AvatarView Text="{Binding Initials}"
+                                                            CornerRadius="30"
+                                                            FontSize="24"
+                                                            HeightRequest="60"
+                                                            ImageSource="{Binding IconImage}"
+                                                            WidthRequest="60"
+                                                            Padding="10"
+                                                            StrokeThickness="2"
+                                                            TextColor="White"
+                                                            BackgroundColor="White"
+                                                            BorderColor="#aec9f7"/> 
+                                        <Label Text="{Binding FullName}" HorizontalOptions="Fill" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+                                   
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </Border>
+                    
+                    
+                    <Border Height="1" BackgroundColor="{StaticResource IconColor}" Margin="0,20"/>
+                    
+                    <customControls:HorizontalOptionItem Title="Check your CIBIL score for free" Icon="{x:Static iconConstants:IconConstants.SpeedIcon}"/>
+                    <customControls:HorizontalOptionItem Title="See transaction history" Icon="{x:Static iconConstants:IconConstants.HistoryIcon}"/>
+                    <customControls:HorizontalOptionItem Title="Check bank balance" Icon="{x:Static iconConstants:IconConstants.BankIcon}"/>
+                    
+                    
+                    <!-- <Label Text="People" FontSize="24" FontAttributes="Bold" Margin="16,10"/> -->
+                <!-- <toolkit:Expander x:Name="PeopleExpander"> -->
+                <!--     <toolkit:Expander.Header> -->
+                <!--         <Border Margin="10,0" StrokeShape="RoundRectangle 24" -->
+                <!--                 Stroke="{StaticResource SearchIconColor}" -->
+                <!--                 StrokeThickness="1" -->
+                <!--                 BackgroundColor="White"> -->
+                <!--         <Grid ColumnDefinitions="*,*"> -->
+                <!--         <Label Grid.Column="0" Text="People" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Margin="16,10"/> -->
+                <!--         <Label  Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End"  FontFamily="MaterialRounded" Text="{x:Static iconConstants:IconConstants.DropDownIcon}" FontSize="32" FontAttributes="Bold" Margin="16,10"> -->
+                <!--             <Label.Triggers> -->
+                <!--                 ~1~ When Expanded @1@ -->
+                <!--                 <DataTrigger TargetType="Label" -->
+                <!--                              Binding="{Binding Source={x:Reference PeopleExpander}, Path=IsExpanded}" -->
+                <!--                              Value="True"> -->
+                <!--                    <Setter Property="Rotation" Value="180"/> -->
+                <!--                 </DataTrigger> -->
+                <!--                 <DataTrigger TargetType="Label" -->
+                <!--                              Binding="{Binding Source={x:Reference PeopleExpander}, Path=IsExpanded}" -->
+                <!--                              Value="False"> -->
+                <!--                     <Setter Property="Rotation" Value="0"/> -->
+                <!--                 </DataTrigger> -->
+                <!--                 </Label.Triggers> -->
+                <!--         </Label> -->
+                <!--         </Grid> -->
+                <!--             </Border> -->
+                <!--     </toolkit:Expander.Header> -->
+                <!--     <Border Margin="10,0,10,10" StrokeShape="RoundRectangle 24" -->
+                <!--             Stroke="{StaticResource SearchIconColor}" -->
+                <!--             StrokeThickness="0" -->
+                <!--             BackgroundColor="White"> -->
+                <!--     <FlexLayout JustifyContent="SpaceBetween" Wrap="Wrap" BindableLayout.ItemsSource="{Binding PeopleList}"> -->
+                <!--         <BindableLayout.ItemTemplate> -->
+                <!--             <DataTemplate> -->
+                <!--                  -->
+                <!--                 <VerticalStackLayout Padding="8,8"> -->
+                <!--                     <toolkit:AvatarView Text="{Binding Initials}" -->
+                <!--                                         CornerRadius="40" -->
+                <!--                                         FontSize="24" -->
+                <!--                                         HeightRequest="80" -->
+                <!--                                         WidthRequest="80" -->
+                <!--                                         StrokeThickness="2" -->
+                <!--                                         TextColor="White" -->
+                <!--                                         BackgroundColor="{Binding BackGroundColor}" -->
+                <!--                                         BorderColor="{StaticResource SearchIconColor}"/>  -->
+                <!--                     <Label Text="{Binding FullName}" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/> -->
+                <!--                 </VerticalStackLayout> -->
+                <!--                     -->
+                <!--             </DataTemplate> -->
+                <!--         </BindableLayout.ItemTemplate> -->
+                <!--     </FlexLayout> -->
+                <!--             </Border> -->
+                <!--              -->
+                <!-- </toolkit:Expander> -->
+                
+                
+               
                 </VerticalStackLayout>
             </Grid>
        </VerticalStackLayout>

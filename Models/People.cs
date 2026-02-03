@@ -42,4 +42,5 @@ public class People
         return Palette[index];
     }
     
+    public string IconImage {get; set;}
 }

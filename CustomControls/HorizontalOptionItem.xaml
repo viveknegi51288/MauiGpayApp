@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGPayApp.CustomControls.HorizontalOptionItem"
+             ColumnDefinitions="Auto,*,Auto"
+             x:Name="HorizontalOptionItemView"
+             ColumnSpacing="20"
+             Margin="10,10,0,10"
+             
+             xmlns:iconConstants="clr-namespace:MauiGPayApp.Constants">
+    
+    <Label Grid.Column="0" TextColor="{StaticResource IconColor}" FontSize="24" Text="{Binding Icon,Source={x:Reference HorizontalOptionItemView}}" FontFamily="MaterialRounded"/>
+    <Label Grid.Column="1" FontFamily="OpenSansSemibold" FontAttributes="Bold" FontSize="16" Text="{Binding Title,Source={x:Reference HorizontalOptionItemView}}"/>
+    <Label Grid.Column="2" FontSize="24" Text="{x:Static iconConstants:IconConstants.LeftIcon}" FontFamily="MaterialRounded"/>
+    
+</Grid>

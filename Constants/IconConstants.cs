@@ -11,5 +11,8 @@ public static class IconConstants
     public static readonly string UPILiteIcon = "\ueb9b";
     public static readonly string RewardsIcon = "\ue71a";
     public static readonly string UPIIDIcon = "\uf3cf";
-
+    public static readonly string DropDownIcon = "\ue5c6";
+    public static readonly string SpeedIcon = "\ue9e4";
+    public static readonly string HistoryIcon = "\ue889";
+    public static readonly string LeftIcon = "\ue5cc";
 }
